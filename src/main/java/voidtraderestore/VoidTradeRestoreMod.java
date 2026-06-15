@@ -15,6 +15,13 @@ import voidtraderestore.mixin.TradeOfferAccessor;
 
 import java.util.*;
 
+/**
+ * Restores villager trade offers to their original state when the trading
+ * screen is closed, provided the villager is outside every player's
+ * simulation distance. This recreates the void trading mechanic where
+ * transporting a villager far away (e.g. through a portal) rewards the
+ * effort with infinite trades.
+ */
 public class VoidTradeRestoreMod implements ModInitializer {
     public static final String MOD_ID = "voidtraderestore";
     public static final Logger LOGGER = LoggerFactory.getLogger(MOD_ID);
@@ -26,6 +33,10 @@ public class VoidTradeRestoreMod implements ModInitializer {
         LOGGER.info("VoidTradeRestore loaded");
     }
 
+    /**
+     * Called when a player opens a merchant screen. Saves a copy of the
+     * current trade offers so they can be restored later.
+     */
     public static void onMerchantOpened(PlayerEntity player, Merchant merchant) {
         if (merchant.isClient()) return;
         TradeOfferList offers = merchant.getOffers();
@@ -34,6 +45,11 @@ public class VoidTradeRestoreMod implements ModInitializer {
         }
     }
 
+    /**
+     * Called when a player closes a merchant screen. Restores the saved
+     * trade offers only if the merchant entity is outside every player's
+     * simulation distance, replicating the void trading mechanic.
+     */
     public static void onMerchantClosed(PlayerEntity player, Merchant merchant) {
         if (merchant.isClient()) return;
         UUID playerId = player.getUuid();
@@ -49,7 +65,6 @@ public class VoidTradeRestoreMod implements ModInitializer {
 
         boolean isolated = true;
         for (ServerPlayerEntity other : world.getPlayers()) {
-            if (other == player) continue;
             if (entity.squaredDistanceTo(other) <= rangeSq) {
                 isolated = false;
                 break;
@@ -61,6 +76,10 @@ public class VoidTradeRestoreMod implements ModInitializer {
         }
     }
 
+    /**
+     * Applies a saved trade offer snapshot to the merchant, resetting uses,
+     * demand bonus, and special price to their original values.
+     */
     private static void restoreSnapshot(Merchant merchant, TradeOfferList snapshot) {
         TradeOfferList current = merchant.getOffers();
         if (current == null) return;
@@ -77,6 +96,9 @@ public class VoidTradeRestoreMod implements ModInitializer {
         merchant.setOffersFromServer(current);
     }
 
+    /**
+     * Removes any stored trade snapshot for the given player.
+     */
     public static void clearSnapshotsForPlayer(PlayerEntity player) {
         SNAPSHOTS.remove(player.getUuid());
     }

@@ -11,6 +11,10 @@ import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import voidtraderestore.VoidTradeRestoreMod;
 
+/**
+ * Hooks into {@link MerchantScreenHandler} to capture open and close
+ * events, delegating trade snapshot and restore logic to the mod class.
+ */
 @Mixin(MerchantScreenHandler.class)
 public class MerchantScreenHandlerMixin {
     @Shadow
