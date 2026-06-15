@@ -43,7 +43,7 @@ public class VoidTradeRestoreMod implements ModInitializer {
         if (!(merchant instanceof MerchantEntity entity)) return;
         if (!(((EntityAccessor) player).getWorld() instanceof ServerWorld world)) return;
 
-        int simDist = 8;
+        int simDist = Math.max(1, world.getServer().getPlayerManager().getSimulationDistance());
         double range = simDist * 16.0 + 48.0;
         double rangeSq = range * range;
 
