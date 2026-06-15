@@ -1,0 +1,15 @@
+{
+  "required": true,
+  "minVersion": "0.8",
+  "package": "voidtraderestore.mixin",
+  "compatibilityLevel": "JAVA_21",
+  "mixins": [
+    "EntityAccessor",
+    "VillagerEntityMixin",
+    "MerchantScreenHandlerMixin",
+    "TradeOfferAccessor"
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  }
+}
