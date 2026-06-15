@@ -1,4 +1,4 @@
-package voidtraderestore.mixin;
+package voidtradingrestore.mixin;
 
 import net.minecraft.entity.Entity;
 import net.minecraft.world.World;

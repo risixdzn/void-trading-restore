@@ -1,4 +1,4 @@
-package voidtraderestore.mixin;
+package voidtradingrestore.mixin;
 
 import net.minecraft.village.TradeOffer;
 import org.spongepowered.asm.mixin.Mixin;

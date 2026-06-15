@@ -1,4 +1,4 @@
-package voidtraderestore.mixin;
+package voidtradingrestore.mixin;
 
 import net.minecraft.entity.passive.MerchantEntity;
 import net.minecraft.entity.player.PlayerEntity;

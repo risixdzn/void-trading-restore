@@ -1,4 +1,4 @@
-package voidtraderestore;
+package voidtradingrestore;
 
 import net.fabricmc.api.ModInitializer;
 import net.minecraft.entity.passive.MerchantEntity;
@@ -10,8 +10,8 @@ import net.minecraft.village.TradeOffer;
 import net.minecraft.village.TradeOfferList;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import voidtraderestore.mixin.EntityAccessor;
-import voidtraderestore.mixin.TradeOfferAccessor;
+import voidtradingrestore.mixin.EntityAccessor;
+import voidtradingrestore.mixin.TradeOfferAccessor;
 
 import java.util.*;
 
@@ -23,7 +23,7 @@ import java.util.*;
  * effort with infinite trades.
  */
 public class VoidTradeRestoreMod implements ModInitializer {
-    public static final String MOD_ID = "voidtraderestore";
+    public static final String MOD_ID = "voidtradingrestore";
     public static final Logger LOGGER = LoggerFactory.getLogger(MOD_ID);
 
     private static final Map<UUID, TradeOfferList> SNAPSHOTS = new HashMap<>();

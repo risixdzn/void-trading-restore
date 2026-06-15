@@ -1,21 +1,21 @@
 {
   "schemaVersion": 1,
-  "id": "voidtraderestore",
+  "id": "voidtradingrestore",
   "version": "${version}",
   "name": "VoidTradeRestore",
   "description": "Restores villager trades when trading in isolation — enables void trading on modern Minecraft",
   "authors": [],
   "contact": {},
   "license": "MIT",
-  "icon": "assets/voidtraderestore/icon.png",
+  "icon": "assets/voidtradingrestore/icon.png",
   "environment": "*",
   "entrypoints": {
     "main": [
-      "voidtraderestore.VoidTradeRestoreMod"
+      "voidtradingrestore.VoidTradeRestoreMod"
     ]
   },
   "mixins": [
-    "voidtraderestore.mixins.json"
+    "voidtradingrestore.mixins.json"
   ],
   "depends": {
     "fabricloader": ">=0.16.0",
